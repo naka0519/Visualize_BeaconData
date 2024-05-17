@@ -20,7 +20,8 @@ DataPath = "./data/test.csv"
 # 可視化
 df = pd.read_csv(DataPath) # index: datatime
 
-x = df.index
+#x = df.index
+x = df["time"]
 y = df["prediction"]
 
 fig = go.Figure()
