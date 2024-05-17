@@ -4,6 +4,7 @@ import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import streamlit as st
 import matplotlib.pyplot as plt
+import time
 
 
 # タイトル
@@ -21,7 +22,7 @@ DataPath = "./data/test.csv"
 df = pd.read_csv(DataPath) # index: datatime
 
 #x = df.index
-x = df["time"]
+x = pd.to_datetime(df["time"]) + timedelta(hours=9)
 y = df["prediction"]
 
 fig = go.Figure()
