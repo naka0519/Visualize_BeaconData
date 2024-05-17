@@ -7,3 +7,12 @@ import matplotlib.pyplot as plt
 
 
 st.write("hello streamlit")
+
+xs = np.linspace(0, 10, 100)
+sins = np.sin(xs)
+randoms = np.random.rand(100)
+
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=xs, y=sins, name="sin"))
+fig.add_trace(go.Scatter(x=xs, y=randoms, name="random"))
+fig.show() # 上と同じ結果
