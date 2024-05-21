@@ -53,13 +53,28 @@ try:
     # 時間の範囲指定
     start_time = pd.to_datetime(start_date.strftime("%Y-%m-%d") + " " + start_time.strftime("%H:%M:%S"))
     end_time = pd.to_datetime(end_date.strftime("%Y-%m-%d") + " " + end_time.strftime("%H:%M:%S"))
-    st.write("Start time:", start_time)
     
     x = pd.to_datetime(df["time"]) + timedelta(hours=9)
     y = df["prediction"]
 
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=x, y=y, name=User))
+    # 軸タイトル
+    fig.update_xaxes(title="time")
+    fig.update_yaxes(title="prediction")
+    # 軸範囲
+    fig.update_xaxes(range=[start_time, end_time])
+    fig.update_xaxes(rangeslider={"visible":True})
+    # タイトル
+    fig.update_layout(title="Prediction of " + User + " in " + Floor)
+    # 凡例
+    fig.update_layout(showlegend=True)
+
+    #if Person_Num == "2":
+        # データの読み込み
+        # 可視化
+        
+
     #fig.show()
     st.plotly_chart(fig)
 
