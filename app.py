@@ -18,7 +18,7 @@ Person_Num = st.radio("可視化する人数", ["1", "2", "3"])
 User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
-st.write(f"date: {datetime.date(2024).strftime('%Y')}")
+st.write(f"date: {datetime.datetime.date(2024).strftime('%Y')}")
 
 # 可視化範囲
 start_date = st.date_input(
