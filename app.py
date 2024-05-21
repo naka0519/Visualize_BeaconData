@@ -29,15 +29,17 @@ end_date = st.date_input(
 )
 start_time = st.time_input(
     "When do you start?",
-    datetime.time(9, 30),
+    datetime(9, 30),
     step=timedelta(minutes=30)
 )
 end_time = st.time_input(
     "When do you end?",
-    value=datetime.time(10, 30),
+    value=datetime(10, 30),
     step=timedelta(minutes=30)
 )
+st.write("Start date:", start_date)
 st.write("Start time:", start_time)
+st.write("End date:", end_date)
 st.write("End time:", end_time)
 
 
