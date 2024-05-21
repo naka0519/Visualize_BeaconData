@@ -12,12 +12,12 @@ st.write("Suntory beacon data visualization")
 
 # データを選択（選択でファイルpath指定）
 # csvを読み込む前提バージョン（事前に抽出が必要）
-# TODO: データベースから取得するように変更
+# TODO: データベース連携
 Floor = st.selectbox("Floor", ["1F", "2F", "3F"])
 Person_Num = st.radio("可視化する人数", ["1", "2", "3"])
 User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
-
+age = st.slider("How old are you?", 0, 130, 25)
 # 可視化範囲
 start_time = st.slider(
     "When do you start?",
