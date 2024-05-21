@@ -45,7 +45,7 @@ end_time = st.time_input(
 # TODO: multiselectではlist方に対応
 DataPath = f"./data/{Floor}_{User}.csv"
 DataPath = "./data/test.csv"
-
+st.write(timedelta(seconds=300))
 # 可視化
 # TODO: 複数人のデータを一括可視化
 try:
