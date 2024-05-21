@@ -37,9 +37,9 @@ end_time = st.time_input(
     value=time(10, 30),
     step=timedelta(minutes=30)
 )
-st.write("Start date:", start_date + " " + start_time)
+st.write("Start date:", start_date)
 st.write("Start time:", start_time)
-st.write("End date:", end_date + " " + end_time)
+st.write("End date:", end_date)
 st.write("End time:", end_time)
 
 
@@ -51,7 +51,9 @@ DataPath = "./data/test.csv"
 try:
     df = pd.read_csv(DataPath) # index: datatime
     # 時間の範囲指定
-    start_time = start_date
+    start_time = pd.to_datetime(start_date.strftime("%Y-%m-%d") + " " + start_time.strftime("%H:%M:%S"))
+    end_time = pd.to_datetime(end_date.strftime("%Y-%m-%d") + " " + end_time.strftime("%H:%M:%S"))
+    st.write("Start time:", start_time)
     
     x = pd.to_datetime(df["time"]) + timedelta(hours=9)
     y = df["prediction"]
