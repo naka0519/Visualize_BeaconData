@@ -37,12 +37,12 @@ end_time = st.time_input(
     value=time(10, 30),
     step=timedelta(minutes=30)
 )
-st.write("Start date:", start_date)
-st.write("Start time:", start_time)
-st.write("End date:", end_date)
-st.write("End time:", end_time)
+# st.write("Start date:", start_date)
+# st.write("Start time:", start_time)
+# st.write("End date:", end_date)
+# st.write("End time:", end_time)
 
-
+# TODO: multiselectではlist方に対応
 DataPath = f"./data/{Floor}_{User}.csv"
 DataPath = "./data/test.csv"
 
@@ -77,6 +77,11 @@ try:
 
     #fig.show()
     st.plotly_chart(fig)
+
+    # predictionごとの総時間
+    st.write("Total time of visualization: ", end_time - start_time)
+    st.erite("Total time of room: ", datetime.timedelta(seconds=df[df["prediction"]=="room"].sum()))
+
 
 except:
     st.error("No data found. Please check the Floor or User Box.")
