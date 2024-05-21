@@ -51,7 +51,7 @@ DataPath = "./data/test.csv"
 try:
     df = pd.read_csv(DataPath) # index: datatime
     # 時間の範囲指定
-    start_time = start_date + 
+    start_time = start_date
     
     x = pd.to_datetime(df["time"]) + timedelta(hours=9)
     y = df["prediction"]
