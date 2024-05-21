@@ -21,11 +21,11 @@ User = st.selectbox("User", ["User1", "User2", "User3"])
 # 可視化範囲
 start_date = st.date_input(
     "Start date",
-    datetime.date(2023, 11, 4)
+    value = datetime.date(2023, 11, 4)
 )
 end_date = st.date_input(
     "End date",
-    datetime.date(2023, 11, 4)
+    value = datetime.date(2023, 11, 4)
 )
 start_time = st.time_input(
     "When do you start?",
