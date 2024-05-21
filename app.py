@@ -4,7 +4,7 @@ import plotly.figure_factory as ff
 import plotly.graph_objects as go
 import streamlit as st
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 
 
 # タイトル
@@ -14,7 +14,7 @@ st.write("Suntory beacon data visualization")
 # csvを読み込む前提バージョン（事前に抽出が必要）
 # TODO: データベース連携
 Floor = st.selectbox("Floor", ["1F", "2F", "3F"])
-Person_Num = st.radio("可視化する人数", ["1", "2", "3"])
+Person_Num = st.radio("Number of User", ["1", "2", "3"])
 User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
@@ -29,12 +29,12 @@ end_date = st.date_input(
 )
 start_time = st.time_input(
     "When do you start?",
-    datetime.time(9, 30),
+    time(9, 30),
     step=timedelta(minutes=30)
 )
 end_time = st.time_input(
     "When do you end?",
-    value=datetime.time(10, 30),
+    value=time(10, 30),
     step=timedelta(minutes=30)
 )
 st.write("Start date:", start_date)
