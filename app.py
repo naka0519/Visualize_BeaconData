@@ -17,17 +17,17 @@ Floor = st.selectbox("Floor", ["1F", "2F", "3F"])
 Person_Num = st.radio("可視化する人数", ["1", "2", "3"])
 User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
-age = st.slider("How old are you?", 0, 130, 25)
+
 # 可視化範囲
-start_time = st.slider(
+start_time = st.time_inpt(
     "When do you start?",
-    value=datetime(2023, 11, 4, 9, 30),
-    format="MM/DD/YY - hh:mm"
+    datetime(2023, 11, 4, 9, 30),
+    step=timedelta(minutes=30)
 )
-end_time = st.slider(
+end_time = st.time_input(
     "When do you end?",
     value=datetime(2023, 11, 4, 10, 30),
-    format="MM/DD/YY - hh:mm"
+    step=timedelta(minutes=30)
 )
 st.write("Start time:", start_time)
 st.write("End time:", end_time)
