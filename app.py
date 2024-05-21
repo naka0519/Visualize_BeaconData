@@ -21,20 +21,20 @@ User = st.selectbox("User", ["User1", "User2", "User3"])
 # 可視化範囲
 start_date = st.date_input(
     "Start date",
-    datetime(2023, 11, 4)
+    datetime.date(2023, 11, 4)
 )
 end_date = st.date_input(
     "End date",
-    datetime(2023, 11, 4)
+    datetime.date(2023, 11, 4)
 )
 start_time = st.time_input(
     "When do you start?",
-    datetime(9, 30),
+    datetime.time(9, 30),
     step=timedelta(minutes=30)
 )
 end_time = st.time_input(
     "When do you end?",
-    value=datetime(10, 30),
+    value=datetime.time(10, 30),
     step=timedelta(minutes=30)
 )
 st.write("Start time:", start_time)
