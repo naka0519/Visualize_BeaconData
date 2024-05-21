@@ -37,9 +37,9 @@ end_time = st.time_input(
     value=time(10, 30),
     step=timedelta(minutes=30)
 )
-st.write("Start date:", start_date)
+st.write("Start date:", start_date + " " + start_time)
 st.write("Start time:", start_time)
-st.write("End date:", end_date)
+st.write("End date:", end_date + " " + end_time)
 st.write("End time:", end_time)
 
 
@@ -50,8 +50,9 @@ DataPath = "./data/test.csv"
 # TODO: 複数人のデータを一括可視化
 try:
     df = pd.read_csv(DataPath) # index: datatime
-
-    #x = df.index
+    # 時間の範囲指定
+    start_time = start_date + 
+    
     x = pd.to_datetime(df["time"]) + timedelta(hours=9)
     y = df["prediction"]
 
