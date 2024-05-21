@@ -18,25 +18,23 @@ Person_Num = st.radio("可視化する人数", ["1", "2", "3"])
 User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
-st.write(f"date: {datetime.datetime.date(2024).strftime('%Y')}")
-
 # 可視化範囲
 start_date = st.date_input(
     "Start date",
-    value = datetime.date(2023, 11, 4)
+    value = datetime(2023, 11, 4)
 )
 end_date = st.date_input(
     "End date",
-    value = datetime.date(2023, 11, 4)
+    value = datetime(2023, 11, 4)
 )
 start_time = st.time_input(
     "When do you start?",
-    datetime.time(9, 30),
+    datetime(9, 30),
     step=timedelta(minutes=30)
 )
 end_time = st.time_input(
     "When do you end?",
-    value=datetime.time(10, 30),
+    value=datetime(10, 30),
     step=timedelta(minutes=30)
 )
 st.write("Start time:", start_time)
