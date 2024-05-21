@@ -79,7 +79,7 @@ try:
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
-    st.markdown("# User: ", User)
+    st.write("# User: ", User)
     st.write("Total time of room :", timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
