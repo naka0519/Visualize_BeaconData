@@ -80,7 +80,7 @@ try:
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
     st.write((df["prediction"]=="room").sum().sum())
-    st.write(timedelta(seconds=(df["prediction"]=="room").sum().sum()))
+    st.write(timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.erite("Total time of room: ", timedelta(seconds=(df["prediction"]=="room").sum().sum()))
 
 
