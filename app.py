@@ -19,7 +19,7 @@ User = st.selectbox("User", ["User1", "User2", "User3"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
 # 可視化範囲
-start_time = st.time_inpt(
+start_time = st.time_input(
     "When do you start?",
     datetime(2023, 11, 4, 9, 30),
     step=timedelta(minutes=30)
