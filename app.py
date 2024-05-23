@@ -81,7 +81,7 @@ try:
         # データの読み込み
         # 可視化
         
-    st.plotly_chart(fig)
+    #st.plotly_chart(fig)
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
