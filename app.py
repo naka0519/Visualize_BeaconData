@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, time
 # タイトル
 st.write("Suntory beacon data visualization")
 
-# データを選択（選択でファイルpath指定）
+####### Input部分（選択でファイルpath指定）#######
 # csvを読み込む前提バージョン（事前に抽出が必要）
 # TODO: データベース連携
 Floor = st.selectbox("Floor", ["1F", "2F", "3F"])
@@ -42,9 +42,11 @@ end_time = st.time_input(
 # st.write("End date:", end_date)
 # st.write("End time:", end_time)
 
-# TODO: multiselectではlist方に対応
+######################
+# TODO: multiselectではlist方に対応が必要
 DataPath = f"./data/{Floor}_{User}.csv"
-DataPath = "./data/test.csv"
+#DataPath = "./data/test.csv"
+
 # 可視化
 # TODO: 複数人のデータを一括可視化
 try:
@@ -79,7 +81,6 @@ try:
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
-    st.write("## User name: ", User)
     st.write("Total time of room :", timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
