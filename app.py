@@ -45,6 +45,7 @@ end_time = st.time_input(
 ######################
 # TODO: multiselectではlist方に対応が必要
 DataPath = f"./data/{Floor}_{User[-2:]}.csv"
+st.write(DataPath)
 #DataPath = "./data/test.csv"
 
 # 可視化
