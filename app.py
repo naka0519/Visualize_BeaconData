@@ -19,14 +19,7 @@ User = st.selectbox("User", ["suzuki_7a", "nara_8a", "hamada_e4", "katou_79", "f
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 ######################
 
-# TODO: multiselectではlist方に対応が必要
-DataPath = f"./data/{Floor}_{User[-2:]}.csv"
-#DataPath = "./data/test.csv"
-try:
-    df = pd.read_csv(DataPath) # index: datatime
-    df["time"] = pd.to_datetime(df["time"]).dt.tz_localize(None) + timedelta(hours=9)
-except:
-    st.error("No data found. Please check the Floor or User Box.")
+
 
 ###### 可視化範囲 Input部分 ######
 st.write("experimental period: 2023/9/10/18:00 - 2024/1/26/00:00")
@@ -53,6 +46,15 @@ end_time = st.time_input(
 # st.write("End date:", end_date)
 # st.write("End time:", end_time)
 ######################
+
+# TODO: multiselectではlist方に対応が必要
+DataPath = f"./data/{Floor}_{User[-2:]}.csv"
+#DataPath = "./data/test.csv"
+try:
+    df = pd.read_csv(DataPath) # index: datatime
+    df["time"] = pd.to_datetime(df["time"]).dt.tz_localize(None) + timedelta(hours=9)
+except:
+    st.error("No data found. Please check the Floor or User Box.")
 
 # 可視化
 # TODO: 複数人のデータを一括可視化
