@@ -94,12 +94,13 @@ except:
     st.error("No data found. Please check the date and time.")
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
+#fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
 if Floor == "F1":
     fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "R_rssi"]], name="RSSI"), secondary_y=True)
 else:
     fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]], name="RSSI"), secondary_y=True)
-fig.update_yaxes(title_text="prediction", secondary_y=False)
+#fig.update_yaxes(title_text="prediction", secondary_y=False)
 fig.update_yaxes(title_text="RSSI", secondary_y=True)
+fig.update_xaxes(rangeslider={"visible":True})
 
 st.plotly_chart(fig)
