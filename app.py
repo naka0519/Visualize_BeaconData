@@ -19,6 +19,7 @@ User = st.selectbox("User", ["suzuki_7a", "nara_8a", "hamada_e4", "katou_79", "f
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
 # 可視化範囲
+st.write("experimental period: 2023/9/10/18:00 - 2024/1/26/00:00")
 start_date = st.date_input(
     "Start date",
     value = datetime(2023, 11, 4)
@@ -81,6 +82,7 @@ try:
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
+    df = df[df["time"] >= (start_time - timedelata(hours=9)) and df["time"] <= (end_time- timedelata(hours=9))]
     st.write("Total time of room :", timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
