@@ -48,8 +48,12 @@ end_time = st.time_input(
 DataPath = f"./data/{Floor}_{User[-2:]}.csv"
 #DataPath = "./data/test.csv"
 
-df = pd.read_csv(DataPath) # index: datatime
-df["time"] = pd.to_datetime(df["time"]).dt.tz_localize(None) + timedelta(hours=9)
+try:
+    df = pd.read_csv(DataPath) # index: datatime
+    df["time"] = pd.to_datetime(df["time"]).dt.tz_localize(None) + timedelta(hours=9)
+except:
+    st.error("No data found. Please check the Floor or User Box.")
+
 # 可視化
 # TODO: 複数人のデータを一括可視化
 try:
@@ -83,11 +87,11 @@ try:
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
-    df = df[df["time"] >= start_time and df["time"] <= end_time]
+    df = df[(df["time"] >= start_time) & (df["time"] <= end_time)]
     st.write("Total time of room :", timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
 
 
 except:
-    st.error("No data found. Please check the Floor or User Box.")
+    st.error("No data found. Please check the date and time.")
