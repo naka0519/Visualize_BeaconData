@@ -13,7 +13,7 @@ st.write("Suntory beacon data visualization")
 ####### Input部分（選択でファイルpath指定）#######
 # csvを読み込む前提バージョン（事前に抽出が必要）
 # TODO: データベース連携
-Floor = st.selectbox("Floor", ["1F", "2F", "3F"])
+Floor = st.selectbox("Floor", ["F1", "F2", "F3"])
 Person_Num = st.radio("Number of User", ["1", "2", "3"])
 User = st.selectbox("User", ["suzuki_7a", "nara_8a", "hamada_e4", "katou_79", "fujita_41"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
@@ -45,7 +45,6 @@ end_time = st.time_input(
 ######################
 # TODO: multiselectではlist方に対応が必要
 DataPath = f"./data/{Floor}_{User[-2:]}.csv"
-st.write(DataPath)
 #DataPath = "./data/test.csv"
 
 # 可視化
