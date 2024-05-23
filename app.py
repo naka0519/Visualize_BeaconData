@@ -48,15 +48,16 @@ end_time = st.time_input(
 DataPath = f"./data/{Floor}_{User[-2:]}.csv"
 #DataPath = "./data/test.csv"
 
+df = pd.read_csv(DataPath) # index: datatime
+df["time"] = pd.to_datetime(df["time"]).dt.tz_localize(None) + timedelta(hours=9)
 # 可視化
 # TODO: 複数人のデータを一括可視化
 try:
-    df = pd.read_csv(DataPath) # index: datatime
     # 時間の範囲指定
     start_time = pd.to_datetime(start_date.strftime("%Y-%m-%d") + " " + start_time.strftime("%H:%M:%S"))
     end_time = pd.to_datetime(end_date.strftime("%Y-%m-%d") + " " + end_time.strftime("%H:%M:%S"))
     
-    x = pd.to_datetime(df["time"]) + timedelta(hours=9)
+    x = df["time"]
     y = df["prediction"]
 
     fig = go.Figure()
@@ -82,7 +83,7 @@ try:
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
-    df = df[df["time"] >= (start_time - timedelata(hours=9)) and df["time"] <= (end_time- timedelata(hours=9))]
+    df = df[df["time"] >= start_time and df["time"] <= end_time]
     st.write("Total time of room :", timedelta(seconds=int((df["prediction"]=="room").sum().sum())))
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
