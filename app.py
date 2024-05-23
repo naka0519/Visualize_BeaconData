@@ -82,17 +82,6 @@ try:
         
     st.plotly_chart(fig)
 
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
-    if Floor == "F1":
-        fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "R_rssi"]], name="RSSI"), secondary_y=True)
-    else:
-        fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]], name="RSSI"), secondary_y=True)
-    fig.update_yaxes(title_text="prediction", secondary_y=False)
-    fig.update_yaxes(title_text="RSSI", secondary_y=True)
-    
-    st.plotly_chart(fig)
-
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
     df = df[(df["time"] >= start_time) & (df["time"] <= end_time)]
@@ -100,6 +89,16 @@ try:
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
 
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
+if Floor == "F1":
+    fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "R_rssi"]], name="RSSI"), secondary_y=True)
+else:
+    fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]], name="RSSI"), secondary_y=True)
+fig.update_yaxes(title_text="prediction", secondary_y=False)
+fig.update_yaxes(title_text="RSSI", secondary_y=True)
+
+st.plotly_chart(fig)
 
 except:
     st.error("No data found. Please check the date and time.")
