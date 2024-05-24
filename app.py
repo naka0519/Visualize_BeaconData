@@ -92,6 +92,7 @@ try:
     st.write("Total time of Corridor Right :", timedelta(seconds=int((df["prediction"]=="Cor_R").sum().sum())))
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
 
+    ### RRSIとpredictionの可視化 ###
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(go.Scatter(x=df["time"], y=df["prediction"], name=User), secondary_y=False)
     fig.add_trace(go.Scatter(x=df["time"], y=df["B_rssi"], mode='markers', name="B_rssi"), secondary_y=True)
@@ -100,20 +101,12 @@ try:
         fig.add_trace(go.Scatter(x=x, y=df["R_rssi"], mode='markers', name="R_rssi"), secondary_y=True)
     else:
         fig.add_trace(go.Scatter(x=x, y=df["F_rssi"], mode='markers', name="F_rssi"), secondary_y=True)
+    fig.update_traces(marker_size=6)
+    # タイトル
+    fig.update_layout(title="Prediction with RSSI")
     fig.update_xaxes(rangeslider={"visible":True})
     st.plotly_chart(fig)
 
 except:
     st.error("No data found. Please check the date and time.")
 
-
-### RRSIとpredictionの可視化 ###
-# if Floor == "F1":
-#     fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y)
-# else:
-#     fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y)
-# fig.update_traces(marker_size=10)
-# fig.update_layout(scattermode="group", scattergap=0.75)
-# fig.update_yaxes(title_text="prediction")
-# fig.update_xaxes(title_text="time")
-# fig.update_xaxes(rangeslider={"visible":True})
