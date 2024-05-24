@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
+import plotly.express as px
 from plotly.subplots import make_subplots
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -65,10 +66,7 @@ try:
     y = df["prediction"]
 
     fig = go.Figure()
-    if Floor == "F1":
-        fig.add_trace(go.Scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y, name=User))
-    else:
-        fig.add_trace(go.Scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y, name=User))
+    fig.add_trace(go.Scatter(x=x, y=y, name=User))
 
     # 軸タイトル
     fig.update_xaxes(title="time")
@@ -97,14 +95,16 @@ try:
 except:
     st.error("No data found. Please check the date and time.")
 
-# fig = make_subplots(specs=[[{"secondary_y": True}]])
-# #fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
-# if Floor == "F1":
-#     fig.add_trace(go.Scatter(df[[]], x=df["time"], y=df["prediction"], name="RSSI", mode="markers"), secondary_y=True)
-# else:
-#     fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]].values.tolist(), name="RSSI", mode="markers"), secondary_y=True)
-# #fig.update_yaxes(title_text="prediction", secondary_y=False)
-# fig.update_yaxes(title_text="RSSI", secondary_y=True)
-# fig.update_xaxes(rangeslider={"visible":True})
 
-# st.plotly_chart(fig)
+### RRSIとpredictionの可視化 ###
+if Floor == "F1":
+    fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y)
+else:
+    fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y)
+fig.update_traces(marker_size=10)
+fig.update_layout(scattermode="group", scattergap=0.75)
+fig.update_yaxes(title_text="prediction")
+fig.update_xaxes(title_text="time")
+fig.update_xaxes(rangeslider={"visible":True})
+
+st.plotly_chart(fig)
