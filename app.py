@@ -97,14 +97,14 @@ except:
 
 
 ### RRSIとpredictionの可視化 ###
-if Floor == "F1":
-    fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y)
-else:
-    fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y)
-fig.update_traces(marker_size=10)
-fig.update_layout(scattermode="group", scattergap=0.75)
-fig.update_yaxes(title_text="prediction")
-fig.update_xaxes(title_text="time")
-fig.update_xaxes(rangeslider={"visible":True})
+# if Floor == "F1":
+#     fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y)
+# else:
+#     fig = px.scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y)
+# fig.update_traces(marker_size=10)
+# fig.update_layout(scattermode="group", scattergap=0.75)
+# fig.update_yaxes(title_text="prediction")
+# fig.update_xaxes(title_text="time")
+# fig.update_xaxes(rangeslider={"visible":True})
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
