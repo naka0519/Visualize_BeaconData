@@ -107,4 +107,13 @@ except:
 # fig.update_xaxes(title_text="time")
 # fig.update_xaxes(rangeslider={"visible":True})
 
-# st.plotly_chart(fig)
+fig = make_subplots(rows=2, cols=3)
+fig.add_trace(go.Scatter(x=x, y=y, name=User), row=1, col=1)
+fig.add_trace(go.Scatter(x=x, y=df["B_rssi"], name="B_rssi"), row=2, col=1)
+fig.add_trace(go.Scatter(x=x, y=df["L_rssi"], name="L_rssi"), row=2, col=2)
+if Floor == "F1":
+    fig.add_trace(go.Scatter(x=x, y=df["R_rssi"], name="R_rssi"), row=2, col=3)
+else:
+    fig.add_trace(go.Scatter(x=x, y=df["F_rssi"], name="F_rssi"), row=2, col=3)
+fig.update_xaxes(rangeslider={"visible":True})
+st.plotly_chart(fig)
