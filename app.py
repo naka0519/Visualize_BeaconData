@@ -65,7 +65,11 @@ try:
     y = df["prediction"]
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=x, y=y, name=User))
+    if Floor == "F1":
+        fig.add_trace(go.Scatter(df[["time", "prediction", "B_rssi", "L_rssi", "R_rssi"]], x=x, y=y, name=User))
+    else:
+        fig.add_trace(go.Scatter(df[["time", "prediction", "B_rssi", "L_rssi", "F_rssi"]], x=x, y=y, name=User))
+
     # 軸タイトル
     fig.update_xaxes(title="time")
     fig.update_yaxes(title="prediction")
@@ -81,7 +85,7 @@ try:
         # データの読み込み
         # 可視化
         
-    #st.plotly_chart(fig)
+    st.plotly_chart(fig)
 
     # predictionごとの総時間
     st.write("Total time of visualization: ", end_time - start_time)
@@ -93,14 +97,14 @@ try:
 except:
     st.error("No data found. Please check the date and time.")
 
-fig = make_subplots(specs=[[{"secondary_y": True}]])
-#fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
-if Floor == "F1":
-    fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "R_rssi"]].values.tolist(), name="RSSI", mode="markers"), secondary_y=True)
-else:
-    fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]].values.tolist(), name="RSSI", mode="markers"), secondary_y=True)
-#fig.update_yaxes(title_text="prediction", secondary_y=False)
-fig.update_yaxes(title_text="RSSI", secondary_y=True)
-fig.update_xaxes(rangeslider={"visible":True})
+# fig = make_subplots(specs=[[{"secondary_y": True}]])
+# #fig.add_trace(go.Scatter(x=x, y=y, name=User), secondary_y=False)
+# if Floor == "F1":
+#     fig.add_trace(go.Scatter(df[[]], x=df["time"], y=df["prediction"], name="RSSI", mode="markers"), secondary_y=True)
+# else:
+#     fig.add_trace(go.Scatter(x=x, y=df[["B_rssi", "L_rssi", "F_rssi"]].values.tolist(), name="RSSI", mode="markers"), secondary_y=True)
+# #fig.update_yaxes(title_text="prediction", secondary_y=False)
+# fig.update_yaxes(title_text="RSSI", secondary_y=True)
+# fig.update_xaxes(rangeslider={"visible":True})
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
