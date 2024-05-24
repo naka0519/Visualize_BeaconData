@@ -107,13 +107,13 @@ except:
 # fig.update_xaxes(title_text="time")
 # fig.update_xaxes(rangeslider={"visible":True})
 
-fig = make_subplots(rows=2, cols=3)
-fig.add_trace(go.Scatter(x=df["time"], y=df["prediction"], name=User), row=1, col=1)
-fig.add_trace(go.Scatter(x=df["time"], y=df["B_rssi"], name="B_rssi"), row=2, col=1)
-fig.add_trace(go.Scatter(x=df["time"], y=df["L_rssi"], name="L_rssi"), row=2, col=2)
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+fig.add_trace(go.Scatter(x=df["time"], y=df["prediction"], name=User), secondary_y=False)
+fig.add_trace(go.Scatter(x=df["time"], y=df["B_rssi"], name="B_rssi"), secondary_y=True)
+fig.add_trace(go.Scatter(x=df["time"], y=df["L_rssi"], name="L_rssi"), secondary_y=True)
 if Floor == "F1":
-    fig.add_trace(go.Scatter(x=x, y=df["R_rssi"], name="R_rssi"), row=2, col=3)
+    fig.add_trace(go.Scatter(x=x, y=df["R_rssi"], name="R_rssi"), secondary_y=True)
 else:
-    fig.add_trace(go.Scatter(x=x, y=df["F_rssi"], name="F_rssi"), row=2, col=3)
+    fig.add_trace(go.Scatter(x=x, y=df["F_rssi"], name="F_rssi"), secondary_y=True)
 fig.update_xaxes(rangeslider={"visible":True})
 st.plotly_chart(fig)
