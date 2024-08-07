@@ -16,8 +16,9 @@ st.write("Suntory beacon data visualization")
 # csvを読み込む前提バージョン（事前に抽出が必要）
 # TODO: データベース連携
 Floor = st.selectbox("Floor", ["F1", "F2", "F3"])
-Person_Num = st.radio("Number of User", ["1", "2", "3"])
+#Person_Num = st.radio("Number of User", ["1", "2", "3"])
 User = st.selectbox("User", ["suzuki_7a", "nara_8a", "hamada_e4", "katou_79", "fujita_41"])
+User_and_DAY = st.selectbox("Day", ["8a_0923", "8a_1015", "8a_1125", "e4_1020"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
 # 可視化範囲
@@ -48,6 +49,7 @@ end_time = st.time_input(
 
 # TODO: multiselectではlist方に対応が必要
 DataPath = f"./data/{Floor}_{User[-2:]}.csv"
+DataPath = f"./data/{Floor}_{User_and_DAY}.csv"
 #DataPath = "./data/test.csv"
 try:
     df = pd.read_csv(DataPath) # index: datatime
@@ -93,7 +95,7 @@ try:
     st.write("Total time of Corridor Left :", timedelta(seconds=int((df["prediction"]=="Cor_L").sum().sum())))
 
     ### RRSIとpredictionの可視化 ###
-    # TODO: 処理が重すぎる
+    # TODO: 処理が重すぎる→表示区間を1時間で固定などで対応したい
     # fig = make_subplots(specs=[[{"secondary_y": True}]])
     # fig.add_trace(go.Scatter(x=df["time"], y=df["prediction"], name=User), secondary_y=False)
     # fig.add_trace(go.Scatter(x=df["time"], y=df["B_rssi"], mode='markers', name="B_rssi"), secondary_y=True)
