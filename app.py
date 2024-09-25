@@ -18,7 +18,7 @@ st.write("Suntory beacon data visualization")
 Floor = st.selectbox("Floor", ["F1", "F2", "F3"])
 #Person_Num = st.radio("Number of User", ["1", "2", "3"])
 User = st.selectbox("User", ["suzuki_7a", "nara_8a", "hamada_e4", "katou_79", "fujita_41"])
-User_and_DAY = st.selectbox("Day", ["8a_0923", "8a_1015", "8a_1125", "e4_1020"])
+User_and_DAY = st.selectbox("Day", ["8a_0923", "8a_1015", "8a_1125", "e4_1020", "8a_0923_smoothing_5", "8a_0923_smoothing_11", "8a_1015_smoothing", "e4_1020_smoothing"])
 # multi_select = st.multiselect("好きな色",options=["赤","青","黄"])
 
 # 可視化範囲
